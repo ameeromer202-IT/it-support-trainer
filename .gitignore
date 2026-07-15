@@ -1,0 +1,17 @@
+# Local game state / coaching snapshot written by serve.py
+game/dojo-progress.json
+game/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Browser-automation & dev artifacts
+.playwright-mcp/
+*.log
