@@ -1229,7 +1229,8 @@ function levelUpModal(){
 ================================================================ */
 let realm="all";
 /* Your interview date. Defaults to 14 days out so the countdown is always live —
-   set an explicit date (e.g. new Date(2026,6,15,13,0,0)) to count down to the real thing. */
+   set an explicit date to count down to the real thing.
+   Format: new Date(year, monthIndex[0-11], day, hour, minute, 0) */
 const INTERVIEW=new Date(Date.now()+14*86400000);
 function go(id){
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
@@ -1683,7 +1684,7 @@ function bossVictory(){
     {v:"16/16",l:"survived",c:"gold"},
     {v:"+"+xp,l:"xp",c:"grn"},
     {v:S.bossWins,l:"victories",c:"gold"}
-  ],"You answered every scenario the way a real tech would. Walk into Wednesday like this.",
+  ],"You answered every scenario the way a real tech would. Walk into the room like this.",
   [["Rematch","startBoss()"],["Home","go('home')"]]);
 }
 function bossDefeat(){
