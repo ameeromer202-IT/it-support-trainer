@@ -4,7 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IT Support Trainer — Service Desk Arcade</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
+<meta name="description" content="A pixel-art browser arcade for drilling Tier 1/2 IT support interview material — a card course, timed drills, a topic roadmap, and a mock-interview boss, with an optional Claude-powered coach.">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ameeromer202-it.github.io/it-support-trainer/">
+<meta property="og:title" content="IT Support Trainer — Service Desk Arcade">
+<meta property="og:description" content="A pixel-art browser arcade for drilling Tier 1/2 IT support interview material — a card course, timed drills, a topic roadmap, and a mock-interview boss, with an optional Claude-powered coach.">
+<meta property="og:image" content="https://ameeromer202-it.github.io/it-support-trainer/screenshots/dashboard.png">
+<meta property="og:image:width" content="1440">
+<meta property="og:image:height" content="900">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IT Support Trainer — Service Desk Arcade">
+<meta name="twitter:description" content="A pixel-art browser arcade for drilling Tier 1/2 IT support interview material — a card course, timed drills, a topic roadmap, and a mock-interview boss, with an optional Claude-powered coach.">
+<meta name="twitter:image" content="https://ameeromer202-it.github.io/it-support-trainer/screenshots/dashboard.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕹️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -427,6 +440,8 @@ textarea,input{font-family:inherit;color:var(--ink);}
 /* ============ RESPONSIVE ============ */
 @media(max-width:720px){
   .topnav{gap:12px;padding:0 14px;overflow-x:auto;}
+  .tn-logo{gap:7px;}
+  .tn-brand{font-size:10px;letter-spacing:0;}
   .tn-links .nitem{padding:8px 9px;}
   .tn-links .nt{display:none;}
   .tn-lv{display:none;}
@@ -439,6 +454,7 @@ textarea,input{font-family:inherit;color:var(--ink);}
 .worldwrap{border:2px solid var(--line);background:#0a0a0f;position:relative;overflow:hidden;height:475px;box-shadow:0 0 24px color-mix(in srgb,var(--pur) 12%,transparent);}
 #worldCanvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block;image-rendering:pixelated;}
 @media(max-width:720px){.worldwrap{height:340px;}}
+@media(max-width:430px){.tn-brand{font-size:8.5px;}.topnav{padding:0 10px;gap:9px;}}
 .worldhint{font-family:var(--mono);font-size:11px;color:var(--dim2);text-transform:uppercase;letter-spacing:.08em;margin:10px 2px 0;text-align:center;}
 /* ===== SENSEI NPC dialogue (NES-style balloon) ===== */
 .npc{display:flex;align-items:flex-start;gap:14px;margin:4px 0 18px;}
@@ -507,7 +523,7 @@ body{background-color:transparent!important;background-image:none!important;}
 
 <!-- ============ TOP NAV ============ -->
 <header class="topnav">
-  <div class="tn-logo" onclick="go('home')"><span data-pxl="lightning" data-px="20"></span>IT SUPPORT TRAINER</div>
+  <div class="tn-logo" onclick="go('home')"><span data-pxl="lightning" data-px="20"></span><span class="tn-brand">IT SUPPORT TRAINER</span></div>
   <nav class="tn-links">
     <button class="nitem" data-nav="home" onclick="go('home')"><span class="ni" data-pxl="home" data-px="15"></span><span class="nt">Dashboard</span></button>
     <button class="nitem" data-nav="course" onclick="go('course')"><span class="ni" data-pxl="spell-book" data-px="15"></span><span class="nt">Course</span><span class="nbadge" id="navCourse"></span></button>
@@ -634,7 +650,7 @@ body{background-color:transparent!important;background-image:none!important;}
 
   <!-- BOSS INTRO -->
   <div class="screen" id="scr-bossintro">
-    <div class="gtop"><button class="back" onclick="go('home')">← Retreat</button></div>
+    <div class="gtop"><button class="back" onclick="go('home')">← Back</button></div>
     <div class="bossintro">
       <div class="big" data-pxl="community" data-px="60"></div>
       <h2>MOCK INTERVIEW</h2>
@@ -646,7 +662,7 @@ body{background-color:transparent!important;background-image:none!important;}
 
   <!-- BOSS -->
   <div class="screen" id="scr-boss">
-    <div class="gtop"><button class="back" onclick="go('home')">← Flee</button>
+    <div class="gtop"><button class="back" onclick="go('home')">← Quit</button>
       <div class="gsub" style="margin-left:auto"><span class="hearts" id="hearts"></span></div></div>
     <div class="bosshead">
       <div class="bossface" id="bossFace"><span data-pxl="community" data-px="34"></span></div>
@@ -1636,7 +1652,7 @@ function finishQuiz(){
 let bState=null;
 function bossIntro(){
   document.getElementById("bossRecord").textContent=
-    S.bossWins>0?("Victories: "+S.bossWins+" / "+S.bossTries):(S.bossTries>0?"Attempts: "+S.bossTries+" — no victory yet":"");
+    S.bossWins>0?("Passed: "+S.bossWins+" / "+S.bossTries):(S.bossTries>0?"Attempts: "+S.bossTries+" — no victory yet":"");
   go("bossintro");
 }
 function startBoss(){
