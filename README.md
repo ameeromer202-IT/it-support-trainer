@@ -12,6 +12,17 @@ retro RPG: earn XP, climb ranks, walk an overworld map of "realms," and face **t
 > call a local Claude Code CLI via the included server; without it the rest of the game is
 > unaffected (see [Running the Claude-powered features](#running-the-claude-powered-features)).
 
+## Screenshots
+
+**The dashboard** — level, XP bar, streak, next-up card, and the countdown to the Board.
+
+![The dashboard: XP bar, streak, continue-where-you-left-off card, and Claude training modes](screenshots/dashboard.png)
+
+**The overworld** — a Canvas-2D star map of the eight realms; walk the hero between nodes,
+each showing your mastery %, and follow the road to the boss castle.
+
+![The overworld map: eight realm nodes with mastery percentages, linked by paths to the Board](screenshots/overworld.png)
+
 ## What's inside
 
 - **The Course** — chapters of bite-sized cards across 8 realms (Hardware & Boot, Windows,
